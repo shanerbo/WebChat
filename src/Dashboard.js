@@ -9,20 +9,37 @@ const useStyles = makeStyles(theme => ({
             margin: '50px',
             padding: theme.spacing(3, 2),
       },
+      flex: {
+            display: 'flex',
+      },
+      topicsWindow:{
+
+      }
+            topicsWindow: {
+
+      }
+            topicsWindow: {
+
+      }
+            topicsWindow: {
+
+      }
 }));
 
 export default function Dashboard(){
       const classes = useStyles();
-
       return(
             <div>
                   < Paper className = { classes.root } >
-                        <Typography variant="h5" component="h3">
-                              This is a sheet of paper.
-                  </Typography>
-                        <Typography component="p">
-                              Paper can be used to build surface or other elements for your application.
-                  </Typography>
+                        <Typography variant="h4" component="h4">
+                              Chat app.
+                        </Typography>
+                        <Typography component="h5">
+                              Topic placeholder
+                        </Typography>
+                        <div className = {classes.flex}>
+
+                        </div>
                   </Paper >
             </div>
       )

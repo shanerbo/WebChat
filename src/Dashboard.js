@@ -12,32 +12,32 @@ const useStyles = makeStyles(theme => ({
       flex: {
             display: 'flex',
       },
-      topicsWindow:{
+      topicsWindow: {
 
-      }
-            topicsWindow: {
+      },
+      chatWindow: {
 
-      }
-            topicsWindow: {
+      },
+      chatBox: {
 
-      }
-            topicsWindow: {
+      },
+      button: {
 
-      }
+      },
 }));
 
-export default function Dashboard(){
+export default function Dashboard() {
       const classes = useStyles();
-      return(
+      return (
             <div>
-                  < Paper className = { classes.root } >
+                  < Paper className={classes.root} >
                         <Typography variant="h4" component="h4">
                               Chat app.
                         </Typography>
                         <Typography component="h5">
                               Topic placeholder
                         </Typography>
-                        <div className = {classes.flex}>
+                        <div className={classes.flex}>
 
                         </div>
                   </Paper >

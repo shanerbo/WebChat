@@ -5,6 +5,13 @@ const addUser = ({ id, name, room }) => {
       room = room.trim().toLowerCase();
 
       const existingUser = users.find((user) => user.room === room && user.name === name);
+
+      if (!name || !room) {
+            return {
+                  error: 'Username and room are required.'
+            }
+      };
+
       if (existingUser) {
             return {
                   error: "Username is taken"
@@ -19,7 +26,7 @@ const addUser = ({ id, name, room }) => {
 const removeUser = (id) => {
       const index = users.findIndex((user) => user.id === id);
       if (index !== -1) {
-            return users.splice(index, i)[0];
+            return users.splice(index, 1)[0];
       }
 }
 

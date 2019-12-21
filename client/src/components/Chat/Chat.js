@@ -9,66 +9,66 @@ import UserList from '../UserList/UserList.js';
 let socket;
 
 const Chat = ({ location }) => {
-      const [name, setName,] = useState('');
-      const [room, setRoom,] = useState('');
-      const [message, setMessage,] = useState('');
-      const [messages, setMessages,] = useState([]);
-      const [users, setUsers,] = useState('');
-      const ENDPOINT = "localhost:5000";
+    const [name, setName,] = useState('');
+    const [room, setRoom,] = useState('');
+    const [message, setMessage,] = useState('');
+    const [messages, setMessages,] = useState([]);
+    const [users, setUsers,] = useState('');
+    const ENDPOINT = "localhost:5000";
 
-      useEffect(() => {
-            const { name, room } = queryString.parse(location.search);
-            console.log(name, room);
+    useEffect(() => {
+        const { name, room } = queryString.parse(location.search);
+        console.log(name, room);
 
-            socket = io(ENDPOINT);
+        socket = io(ENDPOINT);
 
-            setName(name);
-            setRoom(room);
+        setName(name);
+        setRoom(room);
 
-            socket.emit("join", { name: name, room: room }, (error) => {
-                  if (error) {
-                        alert(error);
-                  }
-            });
-            return () => {
-                  socket.emit("disconnect");
-                  socket.off();
+        socket.emit("join", { name: name, room: room }, (error) => {
+            if (error) {
+                alert(error);
             }
-      }, [ENDPOINT, location.search]);
+        });
+        return () => {
+            socket.emit("disconnect");
+            socket.off();
+        }
+    }, [ENDPOINT, location.search]);
 
-      useEffect(() => {
-            socket.on("message", (message) => {
-                  console.log(message);
-                  setMessages([...messages, message]);
-            })
+    useEffect(() => {
+        socket.on("message", (message) => {
+            console.log(message);
+            setMessages([...messages, message]);
+        })
 
-      }, [messages]);
+    }, [messages]);
 
-      useEffect(() => {
-            socket.on("roomData", ({ users }) => {
-                  setUsers(users);
-            })
-      }, [users]);
+    useEffect(() => {
+        socket.on("roomData", ({ users }) => {
+            setUsers(users);
+        })
+    }, [users]);
 
-      const sendMessage = (event) => {
-            event.preventDefault();
-            if (message) {
-                  socket.emit("sendMessage", message, () => setMessage(""));
-            }
-      }
+    const sendMessage = (event) => {
+        event.preventDefault();
+        if (message) {
+            socket.emit("sendMessage", message, () => setMessage(""));
+        }
+    }
 
-      console.log(message, messages);
+    console.log(message, messages);
 
-      return (
-            <div className="outerContainer">
-                  <div className="container">
-                        <InfoBar room={room} />
-                        <Messages messages={messages} name={name}></Messages>
-                        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-                  </div>
-                  <UserList users={users} />
+    return (
+        <div className="outerContainer">
+            <div className="container">
+                <InfoBar room={room} />
+                <Messages messages={messages} name={name}></Messages>
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-      );
+            <UserList users={users} />
+        </div>
+    );
 }
 
 

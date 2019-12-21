@@ -5,6 +5,7 @@ import './Chat.css';
 import InfoBar from '../InfoBar/InfoBar.js';
 import Input from '../Input/Input.js';
 import Messages from '../Messages/Messages.js';
+import UserList from '../UserList/UserList.js';
 let socket;
 
 const Chat = ({ location }) => {

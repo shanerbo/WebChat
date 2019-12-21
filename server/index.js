@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
                   return callback(error);
             }
 
-            socket.emit("message", { user: "admin", text: `${user.name}, welcome to the room ${user.room}` });
+            socket.emit("message", { user: "admin", text: `${user.name}, welcome to  ${user.room}` });
 
             socket.broadcast.to(user.room).emit("message", { user: "admin", text: `${user.name}, has joined` });
 
